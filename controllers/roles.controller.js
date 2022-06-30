@@ -1,6 +1,7 @@
 // Models
 const { Roles } = require("../models/roles.model");
 const { Usuarios } = require("../models/usuarios.model");
+const { AppError } = require("../utils/appError.util");
 
 // Utils
 const { catchAsync } = require("../utils/catchAsync.util");
@@ -25,6 +26,27 @@ const registrarRol = catchAsync(async (req, res, next) => {
   res.status(201).json({ nuevoRol });
 });
 
-const buscarRol = catchAsync(async (req, res, next) => {});
+const buscarRol = catchAsync(async (req, res, next) => {
+  const { rol } = req;
+  res.status(200).json({ rol });
+});
 
-module.exports = { listarRoles, registrarRol };
+const actualizarRol = catchAsync(async (req, res, next) => {
+  const { rol } = req;
+  const { nombre } = req.body;
+  await rol.update({ nombre });
+  res.status(200).json({ status: "Rol Actualizado" });
+});
+
+const deshabilitarRol = catchAsync(async (req, res, next) => {
+  const { rol } = req;
+  await rol.update({ status: "inactivo" });
+});
+
+module.exports = {
+  listarRoles,
+  registrarRol,
+  buscarRol,
+  actualizarRol,
+  deshabilitarRol,
+};

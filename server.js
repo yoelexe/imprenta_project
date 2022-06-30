@@ -8,14 +8,16 @@ const { db } = require("./utils/database.util");
 
 // comprabamos la conexion con la base de datos
 db.authenticate()
-  .then(() => console.log("Database authenticated"))
+  .then(() => console.log("Base de datos conectada"))
   .catch((err) => console.log(err));
 
 // Establecemos las relaciones
 relaciones();
 
 // Sincronizar con la BD
-db.sync();
+db.sync()
+  .then(() => console.log("Base de datos funcionando"))
+  .catch((err) => console.log(err));
 
 // corremos el servidor
 const PORT = process.env.PORT || 4000;

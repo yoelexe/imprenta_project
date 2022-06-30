@@ -43,5 +43,13 @@ const registrarUsuario = catchAsync(async (req, res, next) => {
 });
 
 const buscarUsuario = catchAsync(async (req, res, next) => {});
+const actualizarUsuario = catchAsync(async (req, res, next) => {});
+const deshabilitarUsuario = catchAsync(async (req, res, next) => {});
 
-module.exports = { listarUsuarios, registrarUsuario };
+module.exports = {
+  listarUsuarios,
+  registrarUsuario,
+  buscarUsuario,
+  actualizarUsuario,
+  deshabilitarUsuario,
+};
